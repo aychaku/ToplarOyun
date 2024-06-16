@@ -1,0 +1,20 @@
+.GridContainer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.gameSetGrid{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    padding: 10px;
+
+}
+.gameArenaGrid{
+    grid-column-start: 4;
+    grid-column-end: 6;
+
+}
+.gameEndGrid{
+    grid-column-start: 6;
+    grid-column-end: 12;
+
+}

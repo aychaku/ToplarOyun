@@ -1,0 +1,68 @@
+ballstone{
+    margin-left: auto;
+    margin-right: auto;
+    height: 2rem;
+    width: 2rem;
+    display: block;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .5);
+}
+
+.Black{
+    background-color: black;
+}
+.Red{
+    background-color: red;
+}
+.Green{
+    background-color: green;
+}
+.Blue{
+    background-color: blue;
+}
+.Yellow{
+    background-color: yellow;
+}
+.Purple{
+    background-color: purple;
+}
+.Ball{
+    border-radius: 50%;
+    border: 1px gray solid;
+    height: 1.8rem;
+    width: 1.8rem;
+}
+.Square{
+    border-radius: 15%;
+    border: 1px gray solid;
+    height: 1.8rem;
+    width: 1.8rem;
+}
+.Caro{
+    transform: rotatez(45deg)!important;
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 1px gray solid;
+
+}
+.Circle{
+    border-radius: 50%;
+    border: 1px gray solid;
+    height: 1.8rem;
+    width: 1.8rem;
+    position: relative;
+}
+.Circle::after{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: lightgray;
+    display: block;
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 70%;
+    width: 70%;
+    content: "";
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
+
+}

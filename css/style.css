@@ -1,0 +1,107 @@
+*{
+    font-size: 20px;
+}
+
+.hide{
+    display: none!important;
+    visibility: hidden;
+}
+.centeredDiv{
+    margin-right: auto;
+    margin-left: auto;
+    width: max-content;
+}
+.alignLeft{
+justify-self: left;
+}
+.alignRight{
+    justify-self: right;
+}
+
+.scoreLabel{
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    padding: 0px 1rem;
+    min-width: 2rem;
+    text-align: center;
+    display: inline-block;
+}
+
+.SettingArea{
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.tdClass{
+    background-color: white;
+    width: 10rem;
+}
+.xyinput{
+    width: 3rem;
+}
+.gameArea{
+    background-color: black;
+    border: 2px black solid;
+    margin: .5rem!important;
+}
+.gameArena{
+    background-color: gray  ;
+    border: 2px gray solid;
+
+}
+td{
+    background-color: lightgray;
+    height:3rem;
+    width: 3rem;
+    min-width: 3rem;
+    box-shadow:inset 0px 0px 3px 5px rgba(255, 255, 255, 0.8);
+
+
+}
+.newFilledrenaHole{
+    animation-name: arenaHoleAnim;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes arenaHoleAnim {
+    50%  {    box-shadow:inset 0px 0px 1px 1px rgb(255, 0, 0);}
+}
+
+.GameArea{
+
+    display: inline-block!important;
+    max-width: 100%;
+}
+.Selected{
+    position: relative;
+    animation-name:selected ;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes selected{
+    0%   {top:0rem;}
+    25%  {top:0.2rem;scale: 90%;}
+    50%  {top:0rem;scale:100%;}
+    75%  {top:0.2rem;scale:90%;}
+    100% {top:0rem;scale:100%;}
+
+}
+.mt05{
+    margin-top: .5rem;
+}
+.mb05{
+    margin-bottom: .5rem;
+}
+.gameSettingPanel{
+    text-align: right;
+    background-color: lightgray;
+    border: 1px solid gray;
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 15px;
+
+
+}
