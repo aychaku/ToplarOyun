@@ -53,9 +53,9 @@ class circleShape extends basicShape{
 function getRandomShape(){
     var ShapeLists=[];
     ShapeLists.push(new ballShape());
-    //ShapeLists.push(new circleShape());
-    // ShapeLists.push(new squareShape());
-    // ShapeLists.push(new caroShape());
+    ShapeLists.push(new circleShape());
+    ShapeLists.push(new squareShape());
+    ShapeLists.push(new caroShape());
 
     var rShape=getRandom(ShapeLists);
 
