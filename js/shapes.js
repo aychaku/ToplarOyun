@@ -49,15 +49,13 @@ class circleShape extends basicShape{
         return this.Shape;
     }
 
+
 }
 function getRandomShape(){
-    var ShapeLists=[];
-    ShapeLists.push(new ballShape());
-    //ShapeLists.push(new circleShape());
-    //ShapeLists.push(new squareShape());
-    //ShapeLists.push(new caroShape());
+    var globalShapeLists=ShapeLists;
 
-    var rShape=getRandom(ShapeLists);
+
+    var rShape=getRandom(globalShapeLists);
 
     return rShape;
 }

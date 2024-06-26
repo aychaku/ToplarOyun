@@ -54,7 +54,7 @@ td{
     width: 3rem;
     min-width: 3rem;
     box-shadow:inset 0px 0px 3px 5px rgba(255, 255, 255, 0.8);
-
+    transition: all 500ms linear;
 
 }
 .newFilledrenaHole{
@@ -75,10 +75,10 @@ td{
 }
 .Selected{
     position: relative;
-    animation-name:selected ;
-    animation-duration: 800ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation-name:selected !important;
+    animation-duration: 800ms !important;
+    animation-iteration-count: infinite !important;
+    animation-timing-function: linear !important;
 }
 @keyframes selected{
     0%   {top:0rem;}
@@ -86,6 +86,10 @@ td{
     50%  {top:0rem;scale:100%;}
     75%  {top:0.2rem;scale:90%;}
     100% {top:0rem;scale:100%;}
+
+}
+td:has(ballstone.Selected){
+    background-color: yellow;
 
 }
 .mt05{

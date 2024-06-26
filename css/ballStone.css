@@ -66,3 +66,13 @@ ballstone{
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
 
 }
+.newFilledrenaAppearBallStone > ballstone{
+    animation-name:newFilledrenaAppearBallStoneAnim;
+    animation-iteration-count: 1;
+    animation-duration: 2500ms;
+}
+@keyframes newFilledrenaAppearBallStoneAnim{
+    0%   {scale:0%;}
+    100% {scale:100%;}
+
+}

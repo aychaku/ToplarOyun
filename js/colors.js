@@ -54,16 +54,10 @@ class purpleColor extends basicColor{
     }
 }
 function getRandomColor(){
-    var rColor;
-    var ColorList=[];
-     //ColorList.push(new basicColor());
-    ColorList.push(new redColor());
-    ColorList.push(new greenColor());
-    ColorList.push(new blueColor());
-    ColorList.push(new yellowColor());
-    ColorList.push(new purpleColor());
+    var glovalColorList=ColorList;
 
-    rColor=getRandom(ColorList);
+
+    var rColor=getRandom(glovalColorList);
 
     return rColor;
 }

@@ -71,7 +71,7 @@ class arenaStoneHole{
     }
 }
 function setNewFilledArenaStoneHole(arenaStoneHole){
-    arenaStoneHole.htmlClass="newFilledrenaHole";
+    arenaStoneHole.htmlClass="newFilledrenaHole newFilledrenaAppearBallStone";
 }
 function setUnfilledOldArenaStoneHoleMap(arena){
     var stoneholemap=arena.stoneHoleMap;
