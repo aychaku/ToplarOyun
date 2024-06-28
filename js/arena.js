@@ -104,6 +104,9 @@ class arena{
                             this.game.setRandomPreview();
         this.game.scoreElement.innerHTML=this.game.score;
 
+        if(this.getEmptyHoleCount==0){
+            this.game.gameOver();
+        }
 
         } 
     getRows(){
@@ -158,7 +161,7 @@ class arena{
         }else{
             console.log(this.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
             if(pointcollected==0){
-                this.game.score+=-10;
+                this.game.score+=-2;
             this.game.turnAddNewStones();}else{
             setUnfilledOldArenaStoneHoleMap(this);}
 
