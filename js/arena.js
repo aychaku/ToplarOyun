@@ -157,6 +157,7 @@ class arena{
 
         if(this.getEmptyHoleCount()<=this.turnAddNewStones){
             confirm(`GameOver due lack of StoneBallSpace`);
+            this.updateArena();
             return;
         }else{
             console.log(this.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
