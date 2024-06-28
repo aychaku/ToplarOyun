@@ -104,7 +104,7 @@ class arena{
                             this.game.setRandomPreview();
         this.game.scoreElement.innerHTML=this.game.score;
 
-        if(this.getEmptyHoleCount==0){
+        if(this.getEmptyHoleCount()==0){
             this.game.gameOver();
         }
 
