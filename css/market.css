@@ -1,0 +1,48 @@
+.market{
+display: inline-block;
+margin-left: 15px;
+padding: 15px;
+background-color: rgba(0, 0, 255, 0.205);
+border-radius: 5px;
+border: 1px solid black;
+}
+.marketShelf{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:  5px;
+}
+
+.marketShelfHole{
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+    border: 6px solid rgb(170, 170, 170);
+    transition: all 500ms linear;
+}
+.marketShelfHole:hover{
+    border: 6px solid black;
+    z-index: 5;
+
+}
+.marketShelfName{
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    top:20%;
+    left: 0px;
+}
+.marketShelfPrice{
+    display: inline-block;
+    color: white;
+    text-wrap: nowrap;
+    font-size: .7rem;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    background-color: black;
+    border-radius: 20%;
+    padding: 0px 5px;
+    transform: translate(-50%,0%);
+}

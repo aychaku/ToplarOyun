@@ -9,7 +9,7 @@ ColorList.push(new redColor());
 ColorList.push(new greenColor());
 ColorList.push(new blueColor());
 //ColorList.push(new yellowColor());
-ColorList.push(new purpleColor());
+//ColorList.push(new purpleColor());
 
 let Maingame=new game("Maingame");
 

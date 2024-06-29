@@ -149,7 +149,9 @@ class arena{
         //move stone ball to stone ballhole
 
         var movementmgr=this.game.movementManager;
-        movementmgr.portalMove(transferStoneHole,clickedHole);
+        //movementmgr.portalMove(transferStoneHole,clickedHole);
+        movementmgr.activeMove(transferStoneHole,clickedHole);
+
         var pointcollected=this.game.pointCollector.collectPoints();
         this.updateArena();
 

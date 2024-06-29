@@ -24,6 +24,7 @@ class game{
             this.setGameArena();
             this.pointCollector= new pointCollector(this);
             this.movementManager= new movementManager(this);
+            this.marketManager=new marketManager(this);
             this.updateArena();
          }
          updateArena(){

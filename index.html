@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/ballStone.css">
+    <link rel="stylesheet" href="css/market.css">
     <link rel="icon" sizes="68x68" href="img/favicon.ico">
 </head>
 <body>
@@ -53,7 +54,49 @@
             </div>
         </div>
             <div class="gameEndGrid">
-                
+                <div id="Market" class="market">
+                    <h3>Market</h3>
+                    <table>
+                        <tbody>
+                            <tr><label>İlerleme seçimi</label></tr>
+                            <tr class="marketShelf">
+                                <td id="walkmarketShelfHole" class="marketShelfHole" onclick="setMovement(Maingame,walkMovetype)">
+                                    <label id="walkmarketShelfHole" class="marketShelfName">Yürü</label>
+                                    <label id="walkmarketShelfHole" class="marketShelfPrice">
+                                        5 P
+                                    </label>
+                                </td>
+                                <td id="teleportmarketShelfHole" class="marketShelfHole"onclick="setMovement(Maingame,portalMovetype)">
+                                    <label id="teleportmarketShelfName" class="marketShelfName">Işınlan</label>
+                                    <label id="teleportmarketShelfPrice" class="marketShelfPrice">
+                                        100 P
+                                    </label>
+                                </td>
+                                <td id="copystonemarketShelfHole" class="marketShelfHole"onclick="setMovement(Maingame,copyMovetype)">
+                                    <label id="copystonemarketShelfName" class="marketShelfName">Kopya</label>
+                                    <label id="copystonemarketShelfPrice" class="marketShelfPrice">
+                                        150 P
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr><label>Avantaj seçimi</label></tr>
+                            <tr class="marketShelf">
+                                <td id="removemarketShelfHole" class="marketShelfHole" onclick="removeAdvantageStone(Maingame)">
+                                    <label id="removemarketShelfName" class="marketShelfName">Patlat</label>
+                                    <label id="removemarketShelfPrice" class="marketShelfPrice">
+                                        50 P
+                                    </label>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
 
@@ -72,6 +115,8 @@
     <script src="js/pathFinder.js" type="text/javascript" ></script>
     <script src="js/direction.js" type="text/javascript" ></script>
     <script src="js/movementManager.js" type="text/javascript" ></script>
+    <script src="js/market.js" type="text/javascript" ></script>
+
     <script src="js/pointCollectorManager.js" type="text/javascript" ></script>
 
     <script src="js/game.js" type="text/javascript" ></script>
