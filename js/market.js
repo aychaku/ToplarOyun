@@ -30,10 +30,12 @@ game.movementManager.activeMovetype=movement;
 }
 
 function removeAdvantageStone(game){
-var selectedStoneHole=game.arena.SelectedStones[0].arenaStoneHole;
+var selectedStoneHole=game.arena.SelectedStones[0];
+if(selectedStoneHole==null){return;}
+console.log("remove worked");
 console.log(selectedStoneHole);
 if(selectedStoneHole!=null){
-    selectedStoneHole.makeEmpty();
+    selectedStoneHole.arenaStoneHole.makeEmpty();
     game.updateArena();
 }
 }

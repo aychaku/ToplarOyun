@@ -26,7 +26,7 @@
                                 <tr>
                             <label>Yatay boy: <input type="number" name="x" id="MaingamexInput" class="xyinput" value="8" min="1"  max="20"></label><br>
                             <label>Dikey boy: <input type="number" name="y" id="MaingameyInput" class="xyinput"  value="8"  min="1" max="12"></label><br>
-                            <label>Eklenecek Taş <input type="number" name="StoneAddCount" id="MaingameStoneAddCount" class="StoneAddCount xyinput"  value="3"  min="1" max="3" " ></label><br>
+                            <label>Eklenecek Taş <input type="number" name="StoneAddCount" id="MaingameStoneAddCount" class="StoneAddCount xyinput"  value="1"  min="1" max="3" " ></label><br>
                             <label>SıralıTaş<input type="number" name="stoneCollectCount" id="MaingamestoneCollectCount" class="StoneAddCount xyinput"  value="5"  min="2" max="10"  ></label><br>
                             <label>Puan: <label name="scoreLabel" id="MaingamescoreLabel" class="scoreLabel" >0</label></label>
 
@@ -34,8 +34,18 @@
                                 <button id="Maingamestart" class="inlineBlock" onclick="Maingame.gameReload('Maingame')">Yenile </button>
                                 <button id="MaingameAddBall" class="inlineBlock" onclick="Maingame.addRandomBall()">Top Ekle </button>
                             </tr>
+                        </tr><br>
+                        <button id="" class="inlineBlock" onclick="getMap1()">getMap1 </button>
+                    </tr>
 
-
+                    </table>
+                    <table>
+                    <tr><br>
+                    <button id="" class="inlineBlock" onclick="saveGame()">.....Oyunu Kaydet.....</button>
+                    </tr>
+                    <tr id="savedListMenu">
+                        
+                    </tr>
 
                     </table>
                 </tbody>
@@ -112,7 +122,7 @@
     <script src="js/getRandom.js" type="text/javascript" ></script>
     <script src="js/colors.js" type="text/javascript" ></script>
     <script src="js/shapes.js" type="text/javascript" ></script>
-    <script src="js/pathFinder.js" type="text/javascript" ></script>
+    <script src="js/pathSearchManager.js" type="text/javascript" ></script>
     <script src="js/direction.js" type="text/javascript" ></script>
     <script src="js/movementManager.js" type="text/javascript" ></script>
     <script src="js/market.js" type="text/javascript" ></script>
@@ -124,6 +134,7 @@
     <script src="js/ballStone.js" type="text/javascript" ></script>
     <script src="js/arenaStoneHole.js" type="text/javascript" ></script>
     <script src="js/arena.js" type="text/javascript" ></script>
+    <script src="js/gameSessionManager.js" type="text/javascript" ></script>
     <script src="js/app.js" type="text/javascript" ></script>
     <script>
 

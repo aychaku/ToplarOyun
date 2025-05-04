@@ -16,7 +16,8 @@ class game{
             this.gameareaYInput=document.getElementById(gameVarName+"yInput");
             this.arena;
             this.stoneAddCount=document.getElementById(gameVarName+"StoneAddCount");
-            
+            this.stoneAddCountVal=this.stoneAddCount.value;
+
             this.stoneCollectCount=document.getElementById(gameVarName+"stoneCollectCount");
             this.stoneCollectCountVal= this.stoneCollectCount.value;
             this.randomStonesPreview=document.getElementById(gameVarName+"randomStonesPreview");
@@ -25,6 +26,7 @@ class game{
             this.pointCollector= new pointCollector(this);
             this.movementManager= new movementManager(this);
             this.marketManager=new marketManager(this);
+            updateSaveMenuList()
             this.updateArena();
          }
          updateArena(){
@@ -117,9 +119,40 @@ class game{
         randomStonehole.ballStoneHole=randomball;
         this.arena.updateArena();
 }
+    addRandomBallAtPos(x,y){
+        let holeID="Maingame;x:"+x+",y:"+y;
+        var Stonehole=this.arena.findHole(holeID);
+        var randomball=createRandomBall(Stonehole,this);
 
+
+        Stonehole.ballStoneHole=randomball;
+        this.arena.updateArena();
+    }
+    addBallAtPosWithColorShapeForLoad(x,y,colorI,shapeI){
+        let holeID="Maingame;x:"+x+",y:"+y;
+        var Stonehole=this.arena.findHole(holeID);
+        var randomball=createBallWithColorShapeIndex(Stonehole,this,colorI,shapeI);
+
+
+        Stonehole.ballStoneHole=randomball;
+        this.arena.updateArena();
+    }
+    setStoneAddCountVal(stoneAddCount){
+        this.stoneAddCountVal=stoneAddCount;
+        document.getElementById(this.gameVarName+"StoneAddCount").value=stoneAddCount;
+    }
+
+    setStoneCollectCountVal(CollectCount){
+        this.stoneCollectCountVal=CollectCount;
+        document.getElementById(this.gameVarName+"stoneCollectCount").value=CollectCount;
+    }
+    getStoneAddCountVal(){
+        return this.stoneAddCountVal;
+    }
+    getStoneCollectCountVal(){
+        return this.stoneCollectCountVal;
+    }
 }
-
 
 
 

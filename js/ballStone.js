@@ -27,9 +27,11 @@ class BallStone {
    getId(){
     return this.game.gameVarName+";ball:x:"+this.arenaStoneHole.xPos+",y:"+this.arenaStoneHole.yPos;
     }
-
+    getHole(){
+        return this.arenaStoneHole;
+        }
     getHoleId(){
-        return this.arenaStoneHole.getId();
+        return this.getHole().getId();
         }
     getDocumentElement(){
         return document.getElementById(this.getId());
@@ -44,4 +46,9 @@ function createRandomBall(randomStonehole,game){
     var rball=new BallStone(randomStonehole,color,shape,game);
     return rball;
    }
-
+   function createBallWithColorShapeIndex(randomStonehole,game,colorI,ShapeI){
+    var color=ColorList[colorI];
+    var shape=ShapeLists[ShapeI];
+    var rball=new BallStone(randomStonehole,color,shape,game);
+    return rball;
+   }

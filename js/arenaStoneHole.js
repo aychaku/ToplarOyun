@@ -16,12 +16,22 @@ class arenaStoneHole{
         return result;
     }
     getStoneholeAtDirection(DirectionList){
+        if(DirectionList==null||DirectionList.length==0){
+            return null;
+        }
         var direction=directionManager.getSumDirections(DirectionList);
         var targetPositionX=this.xPos+direction.x;
         var targetPositionY=this.yPos+direction.y;
 
         var targetStoneHole=this.findStoneHoleByPos(targetPositionX,targetPositionY);
 
+        return targetStoneHole;
+    }
+    getStoneholeAtDirectionIfEmpty(DirectionList){
+        let stoneHole=getStoneholeAtDirection(DirectionList);
+        if(stoneHole.isStoned()){
+            stoneHole=null;
+        }
         return targetStoneHole;
     }
     findStoneHoleByPos(xPos,yPos){
@@ -52,6 +62,7 @@ class arenaStoneHole{
     setStonedBall(stoneHole){
         this.ballStoneHole=stoneHole;
         this.ballStoneHole.arenaStoneHole=this;
+
     }
     copy(){
         var copy=new arenaStoneHole(this.yPos,this.xPos,this.game);
@@ -68,6 +79,7 @@ class arenaStoneHole{
     }
     makeEmpty(){
         this.ballStoneHole=null;
+        this.game.arena.SelectedStones=[];
     }
 }
 function setNewFilledArenaStoneHole(arenaStoneHole){

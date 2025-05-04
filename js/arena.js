@@ -12,16 +12,7 @@ class arena{
         this.stoneHoleMap=this.createStoneHoleArenaMap();
     }
 
-    getEmptyHoleCount(){
-        var emptysHoles=[];
-        this.game.arena.stoneHoleMap.forEach(element => {
-            if(!element.isStoned()){
-                emptysHoles.push(element);
-            }
-            
-        });
-        return emptysHoles.length;
-    }
+
     createStoneHoleArenaMap(){
         let result=[];
         for (let yPos = 1; yPos <= this.y; yPos++) {
@@ -37,12 +28,27 @@ class arena{
     getEmptyStoneholes(){
         let result=[];
         this.stoneHoleMap.forEach(element => {
-            if(element.isStoned()==false){
+            if(!element.isStoned()){
                 result.push(element);
             }
             
         });
         return result;
+    }
+    // getEmptyHoleCount(){
+    //     var emptysHoles=[];
+    //     this.game.arena.stoneHoleMap.forEach(element => {
+    //         if(!element.isStoned()){
+    //             emptysHoles.push(element);
+    //         }
+            
+    //     });
+    //     return emptysHoles.length;
+    // }
+    getEmptyHoleCount(){
+        var emptysHoles=this.getEmptyStoneholes();
+
+        return emptysHoles.length;
     }
     getFirstStonehole(){
         let result=this.stoneHoleMap[0];
@@ -103,7 +109,6 @@ class arena{
                             //set randomPreview
                             this.game.setRandomPreview();
         this.game.scoreElement.innerHTML=this.game.score;
-
         if(this.getEmptyHoleCount()==0){
             this.game.gameOver();
         }

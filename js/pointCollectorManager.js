@@ -8,6 +8,7 @@ class pointCollector{
         this.SelectPatterns.push(new directionSelectPattern(game.arena,[directionManager.dLeft]));
         this.SelectPatterns.push(new directionSelectPattern(game.arena,[directionManager.dLeft,directionManager.dBottom]));
         this.SelectPatterns.push(new directionSelectPattern(game.arena,[directionManager.dRight,directionManager.dBottom]));
+        //this.SelectPatterns.push(new allSelectPattern(game.arena));
 
 
     }
@@ -29,22 +30,8 @@ class selectPattern{
     }
     Select(){
     }
-    pointCalc(){
-    }
-    collectPoint(){
-    }
-
-}
-class allSelectPattern extends selectPattern{
-    constructor(){
-        super();
-    }
-    Select(arena){
-        var stoneHoles=arena.getFullStoneholes();
-        this.selectedStoneHoles=stoneHoles;
-        
-        return stoneHoles;
-    }
+    // pointCalc(){
+    // }
     pointCalc(arena){
         var result=0;
         var filledStoneHoles=this.Select(arena);
@@ -52,14 +39,32 @@ class allSelectPattern extends selectPattern{
 
         return result;
     }
+    // collectPoint(){
+    // }
     collectPoint(arena){
-        var point=this.pointCalc(arena);
+        var point=this.pointCalc();
+
         var game=arena.game;
         game.score+=point;
         this.selectedStoneHoles.forEach(element => {
             element.makeEmpty();
         });
+        this.selectedStoneHoles=[];
+        return point;
     }
+
+}
+class allSelectPattern extends selectPattern{
+    constructor(arena){
+        super(arena);
+    }
+    Select(){
+        var stoneHoles=this.arena.getFullStoneholes();
+        this.selectedStoneHoles=stoneHoles;
+        
+        return stoneHoles;
+    }
+
 }
 class directionSelectPattern extends selectPattern{
     constructor(arena,direction){
@@ -120,22 +125,22 @@ class directionSelectPattern extends selectPattern{
         });
         return result;
     }
-    pointCalc(){
-        var result=0;
-        var filledStoneHoles=this.Select();
-        result=10*this.selectedStoneHoles.length;
-        return result;
-    }
-    collectPoint(arena){
-        var point=this.pointCalc();
+    // pointCalc(){
+    //     var result=0;
+    //     var filledStoneHoles=this.Select();
+    //     result=10*this.selectedStoneHoles.length;
+    //     return result;
+    // }
+    // collectPoint(arena){
+    //     var point=this.pointCalc();
 
-        var game=arena.game;
-        game.score+=point;
-        this.selectedStoneHoles.forEach(element => {
-            element.makeEmpty();
-        });
-        this.selectedStoneHoles=[];
-        return point;
-    }
+    //     var game=arena.game;
+    //     game.score+=point;
+    //     this.selectedStoneHoles.forEach(element => {
+    //         element.makeEmpty();
+    //     });
+    //     this.selectedStoneHoles=[];
+    //     return point;
+    // }
 
 }
