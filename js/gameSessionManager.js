@@ -1,3 +1,26 @@
+let turnBackMovements=[];
+function turnBackMove(){
+    if(turnBackMovements.length>0){
+        let session=turnBackMovements.pop();
+        Maingame.score=session.score;
+        document.getElementById("MaingamexInput").value=session.x;
+        document.getElementById("MaingameyInput").value=session.y;
+        Maingame.setStoneAddCountVal(session.stoneAddCount);
+        Maingame.setStoneCollectCountVal(session.stoneCollectCountVal);
+        Maingame.setGameArena();
+        Maingame.arena.stoneHoleMap=Maingame.arena.createStoneHoleArenaMap();
+        session.arenaMapHole.forEach(element => {
+            Maingame.addBallAtPosWithColorShapeForLoad(element[0],element[1],element[2],element[3])
+        
+        });
+    }else{
+        alert("Geri alıncacak hareket yok.");
+    }
+}
+function pushTurnBackMove(){
+    let currentSession=getCurrentGame();
+    turnBackMovements.push(currentSession);
+}
 function getCurrentGame(recordName){
     let saveDate=new Date();
     let saveName=saveDate.toISOString().slice(0,10)

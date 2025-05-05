@@ -137,6 +137,7 @@ class arena{
         return columns.sort(function(a,b){ return a.xPos - b.xPos});
     }
     StoneHoleRun(elementId){
+        cleartNewFilledArenaStoneHoleEffect();
         //stone selection if hole stoned
         var SelectedHole=document.getElementById(elementId);
         //release stone selection if hole stoned
@@ -159,7 +160,7 @@ class arena{
 
         var pointcollected=this.game.pointCollector.collectPoints();
         this.updateArena();
-
+        pushTurnBackMove();
         //if there empty StoneHoles continue 
 
         if(this.getEmptyHoleCount()<=this.turnAddNewStones){
@@ -180,6 +181,7 @@ class arena{
         }
         //unselect stone balls
         this.unSelectAllStoneBall();
+
 
     }
 

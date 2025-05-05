@@ -85,6 +85,14 @@ class arenaStoneHole{
 function setNewFilledArenaStoneHole(arenaStoneHole){
     arenaStoneHole.htmlClass="newFilledrenaHole newFilledrenaAppearBallStone";
 }
+function cleartNewFilledArenaStoneHoleEffect(){
+    Maingame.arena.stoneHoleMap.forEach(element => {
+        element.htmlClass="";
+        // element.getDocumentElement().setAttribute("class","");
+        
+    });
+    arenaStoneHole.htmlClass="";
+}
 function setUnfilledOldArenaStoneHoleMap(arena){
     var stoneholemap=arena.stoneHoleMap;
     stoneholemap.forEach(element => {
