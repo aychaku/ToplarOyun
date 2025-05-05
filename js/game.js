@@ -26,7 +26,8 @@ class game{
             this.pointCollector= new pointCollector(this);
             this.movementManager= new movementManager(this);
             this.marketManager=new marketManager(this);
-            updateSaveMenuList()
+            updateSaveMenuList();
+            turnBackMovements=[];
             this.updateArena();
          }
          updateArena(){
