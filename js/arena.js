@@ -170,7 +170,8 @@ class arena{
             console.log(this.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
             if(pointcollected==0){
                 this.game.score+=-2;
-            this.game.turnAddNewStones();}else{
+            //this.game.turnAddNewStones();
+        }else{
             setUnfilledOldArenaStoneHoleMap(this);}
 
         }

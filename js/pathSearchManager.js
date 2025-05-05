@@ -96,6 +96,9 @@ class pathStationManager {
         while(scanCond){
             turntimes++;
             let scanStation=bringLastStation();
+            if(!scanStation){
+                break;
+            }
             if(!scanStation.isThereDirectionToScan()){
                 currentScan.pop();
                 continue;

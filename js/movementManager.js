@@ -19,8 +19,9 @@ class movementManager{
         stoneBall.setStonedBall(stoneballlBackupArenaHole.getStonedBall());
      }
    activeMove(stoneBall,toStoneHole){
-      this.activeMovetype.move(stoneBall,toStoneHole);
+      let ret=this.activeMovetype.move(stoneBall,toStoneHole);
       this.game.score-=this.activeMovetype.price;
+      return ret;
    }
 
      
@@ -53,7 +54,8 @@ class walkMove extends movementType{
       let getShortestPath=pFM.getShortestPath(paths);
       let milisecond=50;
       console.log(paths)
-      this.walk(getShortestPath,5,milisecond);
+      let ret=this.walk(getShortestPath,5,milisecond);
+      return ret;
 
 
    }
@@ -65,7 +67,7 @@ class walkMove extends movementType{
       let squarePersecond=(durationSeconds*1000/Path.length);
       ms? squarePersecond=ms:squarePersecond;
       setWalkInterval(Path,squarePersecond);
-
+      
    }
 }
 
@@ -80,6 +82,8 @@ class portalMove extends movementType{
        toStoneHole.setStonedBall(stoneBall.getStonedBall());
        //this.game.score-=5;//priceFor PortalMovement
        stoneBall.makeEmpty();
+       stoneBall.game.turnAddNewStones();
+
    }
 }
 class copyMove extends movementType{
@@ -93,5 +97,7 @@ class copyMove extends movementType{
       toStoneHole.setStonedBall(stoneBall.getStonedBall());
       stoneBall.makeEmpty();
       stoneBall.setStonedBall(stoneballlBackupArenaHole.getStonedBall());
+      stoneBall.game.turnAddNewStones();
+
    }
 }

@@ -57,6 +57,7 @@ function setWalkInterval(path,milisecondPerStation){
                 }
 
         }else{
+            game.turnAddNewStones();
             game.pointCollector.collectPoints();
             window.clearInterval(timer);
             Maingame.updateArena();
