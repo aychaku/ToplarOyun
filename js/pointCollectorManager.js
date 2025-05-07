@@ -29,49 +29,6 @@ class selectPattern{
         this.selectedHoles=[];
     }
     Select(){
-    }
-    // pointCalc(){
-    // }
-    pointCalc(arena){
-        var result=0;
-        var filledStoneHoles=this.Select(arena);
-        result=10*filledStoneHoles.length;
-
-        return result;
-    }
-    // collectPoint(){
-    // }
-    collectPoint(arena){
-        var point=this.pointCalc();
-
-        var game=arena.game;
-        game.score+=point;
-        this.selectedStoneHoles.forEach(element => {
-            element.makeEmpty();
-        });
-        this.selectedStoneHoles=[];
-        return point;
-    }
-
-}
-class allSelectPattern extends selectPattern{
-    constructor(arena){
-        super(arena);
-    }
-    Select(){
-        var stoneHoles=this.arena.getFullStoneholes();
-        this.selectedStoneHoles=stoneHoles;
-        
-        return stoneHoles;
-    }
-
-}
-class directionSelectPattern extends selectPattern{
-    constructor(arena,direction){
-        super(arena,direction);
-        this.direction=direction;
-    }
-    Select(){
         console.log("Select");
 
         // Direction of selection
@@ -125,6 +82,101 @@ class directionSelectPattern extends selectPattern{
         });
         return result;
     }
+    // pointCalc(){
+    // }
+    pointCalc(arena){
+        var result=0;
+        var filledStoneHoles=this.Select(arena);
+        result=10*filledStoneHoles.length;
+
+        return result;
+    }
+    // collectPoint(){
+    // }
+    collectPoint(arena){
+        var point=this.pointCalc();
+
+        var game=arena.game;
+        game.score+=point;
+        this.selectedStoneHoles.forEach(element => {
+            element.makeEmpty();
+        });
+        this.selectedStoneHoles=[];
+        return point;
+    }
+
+}
+class allSelectPattern extends selectPattern{
+    constructor(arena){
+        super(arena);
+    }
+    Select(){
+        var stoneHoles=this.arena.getFullStoneholes();
+        this.selectedStoneHoles=stoneHoles;
+        
+        return stoneHoles;
+    }
+
+}
+class directionSelectPattern extends selectPattern{
+    constructor(arena,direction){
+        super(arena,direction);
+        this.direction=direction;
+    }
+    // Select(){
+    //     console.log("Select");
+
+    //     // Direction of selection
+    //     //is hole out of arena, if not is it stoned, if it is it same type of ballstone
+    //     //then add collection and continue this process todo end then check colection and if its 
+    //     //higher or equal than collectPointCount then return select if lower than return empty
+    //     var result=[];
+    //     var arena=this.arena;
+    //     var firstStoneHole=arena.getFirstStonehole();
+    //     var StoneHoleCheckingNow=firstStoneHole;
+    //     var direction=this.direction;
+    //     do{
+    //         var pointCollectionList=[];
+    //         if(!StoneHoleCheckingNow.isStoned()||StoneHoleCheckingNow.willBeCollectedp==true){
+    //             StoneHoleCheckingNow=StoneHoleCheckingNow.getNextStonehole();
+    //             continue;}
+    //         var stoneHoleAtDirectionChecking=StoneHoleCheckingNow.getStoneholeAtDirection(direction);
+    //         pointCollectionList.push(StoneHoleCheckingNow);
+
+    //         do {
+    //             if(stoneHoleAtDirectionChecking==null || !stoneHoleAtDirectionChecking.isStoned()){break;}
+
+    //             var type1=stoneHoleAtDirectionChecking.getBallStoneType();
+    //             var type2=StoneHoleCheckingNow.getBallStoneType();
+
+    //             if(type1==type2){
+
+    //                 pointCollectionList.push(stoneHoleAtDirectionChecking);
+    //                 stoneHoleAtDirectionChecking.willBeCollectedp=true;
+    //                 StoneHoleCheckingNow.willBeCollectedp=true;
+    //                 stoneHoleAtDirectionChecking=stoneHoleAtDirectionChecking.getStoneholeAtDirection(direction);//will update for next direction
+    //             }else{
+    //                 break;
+    //             }
+
+                
+    //         } while (stoneHoleAtDirectionChecking!=null && stoneHoleAtDirectionChecking.isStoned());
+
+    //         if(pointCollectionList.length>=this.arena.game.stoneCollectCountVal){
+
+    //             result=result.concat(pointCollectionList);
+    //         }
+            
+    //         StoneHoleCheckingNow=StoneHoleCheckingNow.getNextStonehole();
+    //     }while (StoneHoleCheckingNow!=null);
+    //     this.selectedStoneHoles=result;
+
+    //     this.arena.stoneHoleMap.forEach(element => {
+    //         element.willBeCollectedp=false;
+
+    //     });
+    //     return result;
+    // }
     // pointCalc(){
     //     var result=0;
     //     var filledStoneHoles=this.Select();
