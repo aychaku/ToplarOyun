@@ -53,7 +53,8 @@ class walkMove extends movementType{
       let paths=pFM.getPaths(stoneBall,toStoneHole);
       let getShortestPath=pFM.getShortestPath(paths);
       let milisecond=85;
-      console.log(paths)
+      console.log(...paths)
+      console.log([...getShortestPath])
       let ret=this.walk(getShortestPath,5,milisecond);
       return ret;
 

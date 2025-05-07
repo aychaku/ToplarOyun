@@ -98,14 +98,11 @@ class shortestPathFindingMethod extends pathFindingMethodBase {
         if(!scanStation){
             break;
         }
-        let everFoundInNoDirectionList=scanStation.isInCurrentScan(everFoundNoDirectionList);
-        if(everFoundInNoDirectionList){
-            currentScan.pop();
-            continue;
-        }
-        
         if(!scanStation.isThereDirectionToScan()){
             everFoundNoDirectionList.push(scanStation);
+        }
+        let everFoundInNoDirectionList=scanStation.isInCurrentScan(everFoundNoDirectionList);
+        if(everFoundInNoDirectionList){
             currentScan.pop();
             continue;
         }
@@ -144,8 +141,6 @@ class shortestPathFindingMethod extends pathFindingMethodBase {
         // }
         //console.log(turntimes)
     }
-    console.log([...completedPaths])
-
 
     return completedPaths;
 
