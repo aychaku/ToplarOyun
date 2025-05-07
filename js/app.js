@@ -83,11 +83,11 @@ function setWalkInterval(path,milisecondPerStation){
 
             }
             Maingame.arena.updateArena();
+            window.clearInterval(timer);
 
             }
             //unselect stone balls
             Maingame.arena.unSelectAllStoneBall();
-            window.clearInterval(timer);
 
         
     }, intervalminisec);
