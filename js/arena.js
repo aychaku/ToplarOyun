@@ -159,30 +159,32 @@ class arena{
         movementmgr.activeMove(transferStoneHole,clickedHole);
 
         var pointcollected=this.game.pointCollector.collectPoints();
-        this.updateArena();
-        pushTurnBackMove();
-        //if there empty StoneHoles continue 
+        //i migrate below to setwalkinterval
+        // this.updateArena();
+        // pushTurnBackMove();
+        // //if there empty StoneHoles continue 
 
-        if(this.getEmptyHoleCount()<=this.turnAddNewStones){
-            confirm(`GameOver due lack of StoneBallSpace`);
-            this.updateArena();
-            return;
-        }else{
-            console.log(this.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
-            if(pointcollected==0){
-                // this.game.score+=-2;
-            //this.game.turnAddNewStones();
-        }else{
-            setUnfilledOldArenaStoneHoleMap(this);}
+        // if(this.getEmptyHoleCount()<=this.turnAddNewStones){
+        //     confirm(`GameOver due lack of StoneBallSpace`);
+        //     this.updateArena();
+        //     return;
+        // }else{
+        //     console.log(this.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
+        //     if(pointcollected==0){
+        //         // this.game.score+=-2;
+        //     //this.game.turnAddNewStones();
+        // }else{
+        //     setUnfilledOldArenaStoneHoleMap(this);}
 
-        }
-            this.updateArena();
+        // }
+        //     this.updateArena();
 
-        }
-        //unselect stone balls
-        this.unSelectAllStoneBall();
+        // }
+        // //unselect stone balls
+        // this.unSelectAllStoneBall();
 
 
+    }
     }
 
     isSelected(ball){

@@ -65,8 +65,30 @@ function setWalkInterval(path,milisecondPerStation){
             }
             window.clearInterval(timer);
             Maingame.updateArena();
+            let pointcollected=Maingame.pointCollector.collectPoints();
+            Maingame.arena.updateArena();
+            pushTurnBackMove();
+            //if there empty StoneHoles continue 
 
-        }
+            if(Maingame.arena.getEmptyHoleCount()<=Maingame.arena.turnAddNewStones){
+                confirm(`GameOver due lack of StoneBallSpace`);
+                Maingame.arena.updateArena();
+                return;
+            }else{
+                console.log(Maingame.arena.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
+                if(pointcollected==0){
+                    // Maingame.arena.game.score+=-2;
+                //Maingame.arena.game.turnAddNewStones();
+            }else{
+                setUnfilledOldArenaStoneHoleMap(Maingame.arena);}
+
+            }
+            Maingame.arena.updateArena();
+
+            }
+            //unselect stone balls
+            Maingame.arena.unSelectAllStoneBall();
+        
         
     }, intervalminisec);
 }
