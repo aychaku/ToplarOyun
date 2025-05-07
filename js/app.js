@@ -63,7 +63,6 @@ function setWalkInterval(path,milisecondPerStation){
             if(points==0){
                 game.turnAddNewStones();
             }
-            window.clearInterval(timer);
             Maingame.updateArena();
             let pointcollected=Maingame.pointCollector.collectPoints();
             Maingame.arena.updateArena();
@@ -88,7 +87,8 @@ function setWalkInterval(path,milisecondPerStation){
             }
             //unselect stone balls
             Maingame.arena.unSelectAllStoneBall();
-        
+            window.clearInterval(timer);
+
         
     }, intervalminisec);
 }
