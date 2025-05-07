@@ -157,9 +157,8 @@ class arena{
         var movementmgr=this.game.movementManager;
         //movementmgr.portalMove(transferStoneHole,clickedHole);
         movementmgr.activeMove(transferStoneHole,clickedHole);
-
-        var pointcollected=this.game.pointCollector.collectPoints();
         //i migrate below to setwalkinterval
+        //var pointcollected=this.game.pointCollector.collectPoints();
         // this.updateArena();
         // pushTurnBackMove();
         // //if there empty StoneHoles continue 
