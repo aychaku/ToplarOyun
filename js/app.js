@@ -21,9 +21,11 @@ let Maingame=new game("Maingame");
 
 //
 function lastArrayItem(array){
-    let lastElement = array.pop();
-    array.push(lastElement);
+    let lastElement = array[array.length-1];
     return lastElement;
+    // let lastElement = array.pop();
+    // array.push(lastElement);
+    // return lastElement;
 }
 function getMap1(){
     let list='[[3,1],[4,1],[8,1],[2,2],[5,2],[7,2],[8,2],[3,3],[4,3],[8,3],[4,4],[5,4],[8,4],[2,5],[5,5],[7,6],[2,7],[3,7],[4,7],[3,8]]';

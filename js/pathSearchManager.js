@@ -8,8 +8,8 @@ class pathDirectionManager {
         return (res);
     }
     static getPrefferedSearchDirections(area1, area2) {
-
-        return directionManager.getPreferredDirectionsByHole(area1, area2).reverse();
+        let ret=directionManager.getPreferredDirectionsByHole(area1, area2).reverse();
+        return ret;
     }
     static scanOrderFix(prefferedOrder,lastScanDirection){
         let newOrder=[];
@@ -46,7 +46,7 @@ class pathFindingMethodBase {
 class defaultPathFindingMethod extends pathFindingMethodBase {
     constructor(game) {
         super(game);
-        this.pSM=pathStationManager;
+        this.pSM=pathStationManagerForAllPossiblePaths;
     }
     getPaths(stoneBall,toStoneHole){
         return this.search(stoneBall,toStoneHole);
@@ -62,38 +62,137 @@ class defaultPathFindingMethod extends pathFindingMethodBase {
 
 
 }
-
-
-class pathStationManager {
-    constructor() {}
-    static newpathStation(stoneHole, prefferedDirections,earlierStation,directionComeFrom) {
-
-        let fixedPreferredDirection=pathDirectionManager.scanOrderFix( [...prefferedDirections],directionComeFrom);
-
-        let newStation = new pathStation(stoneHole,fixedPreferredDirection,earlierStation,directionComeFrom);
-        return newStation;
+class shortestPathFindingMethod extends pathFindingMethodBase {
+    constructor(game) {
+        super(game);
     }
-    static isStationNullOrStoned(station){
-        let ret=false;
-        // if(!station){
-        //     ret=true;
+    getPaths(stoneBall,toStoneHole){
+        return this.search(stoneBall,toStoneHole);
+    }
+    getShortestPath(paths){
+         let sorted=paths.sort((a,b)=>{return a.length;})[0];
+       return sorted;
+   }
+   search(stoneHole, targetHole) {
+    let prefferedDirections=pathDirectionManager.getPrefferedSearchDirections(stoneHole, targetHole);
+    let startStation=newpathStation(stoneHole,prefferedDirections,null,null)
+    let completedPaths=[];
+    let currentScan=[];
+    let everFoundNoDirectionList=[];
+    currentScan.push(startStation);
+    let bringLastStation=()=>{return lastArrayItem(currentScan);}
+
+    let turntimes=0;
+    let scanCond=()=>{
+        // if(completedPaths.length>0){
+        //     return false;
         // }
-        if(!station&&!station.isStationStoneHoleAvailable()){
-            ret=true;
+        // if(turntimes>15000){
+        //     return false;
+        // }
+        return currentScan.length>0;
+    };
+    while(scanCond()){
+        turntimes++;
+        let scanStation=bringLastStation();
+        if(!scanStation){
+            break;
         }
-        return ret;
+        let everFoundInNoDirectionList=scanStation.isInCurrentScan(everFoundNoDirectionList);
+        if(everFoundInNoDirectionList){
+            currentScan.pop();
+            continue;
+        }
+        
+        if(!scanStation.isThereDirectionToScan()){
+            everFoundNoDirectionList.push(scanStation);
+            currentScan.pop();
+            continue;
+        }
+        let isScanStationOnTarget=pathDirectionManager.pathComplationCondition(scanStation.arenaStoneHole,targetHole);
+        if(isScanStationOnTarget){
+            completedPaths.push([...currentScan]);
+            currentScan.pop();
+            continue;
+
+        }else{
+            prefferedDirections=pathDirectionManager.getPrefferedSearchDirections(scanStation.arenaStoneHole, targetHole);
+        let scanNextStation=scanStation.scanNextStation(prefferedDirections);
+        let isStationAvailable=scanNextStation.isStationStoneHoleAvailable();
+        let notInCurrentScan=!scanNextStation.isInCurrentScan(currentScan);
+        if(isStationAvailable&&notInCurrentScan){currentScan.push(scanNextStation)}
     }
+    // let listForPrintId=[...completedPaths];
+    // for (let index = 0; index < listForPrintId.length; index++) {
+    //     const element = listForPrintId[index];
+    //     let petIds="";
+    //     for (let index = 0; index < element.length; index++) {
+    //         const elementx = element[index];
+    //         petIds+=", [" +elementx.getId() +"]";
+    //     }
+    //     let path="path "+(index+1)+petIds ;
+    //     console.log(path);
+        
+        
+    // }
+
+        // if(completedPaths.length>0){
+        //     scanCond=false;
+        // }
+        // if(turntimes>15000){
+        //     scanCond=false;
+        // }
+        //console.log(turntimes)
+    }
+    console.log([...completedPaths])
+
+
+    return completedPaths;
+
+}
+
+
+
+}
+function newpathStation(stoneHole, prefferedDirections,earlierStation,directionComeFrom) {
+
+    // let fixedPreferredDirection=pathDirectionManager.scanOrderFix( [...prefferedDirections],directionComeFrom);
+    // let newStation = new pathStation(stoneHole,fixedPreferredDirection,earlierStation,directionComeFrom);
+    let newStation = new pathStation(stoneHole,prefferedDirections,earlierStation,directionComeFrom);
+    return newStation;
+}
+function isStationNullOrStoned(station){
+    let ret=false;
+    // if(!station){
+    //     ret=true;
+    // }
+    if(!station&&!station.isStationStoneHoleAvailable()){
+        ret=true;
+    }
+    return ret;
+}
+
+class pathStationManagerForAllPossiblePaths {
+    constructor() {}
     static search(stoneHole, targetHole) {
         let prefferedDirections=pathDirectionManager.getPrefferedSearchDirections(stoneHole, targetHole);
-        let startStation=pathStationManager.newpathStation(stoneHole,prefferedDirections,null,null)
+        let startStation=newpathStation(stoneHole,prefferedDirections,null,null)
         let completedPaths=[];
         let currentScan=[];
         currentScan.push(startStation);
         let bringLastStation=()=>{return lastArrayItem(currentScan);}
 
         let turntimes=0;
-        let scanCond=true;
-        while(scanCond){
+        let scanCond=()=>{
+            if(completedPaths.length>0){
+                return false;
+            }
+            if(turntimes>15000){
+                return false;
+            }
+            return currentScan.length>0;
+        };
+        while(scanCond()){
             turntimes++;
             let scanStation=bringLastStation();
             if(!scanStation){
@@ -105,24 +204,38 @@ class pathStationManager {
             }
             let isScanStationOnTarget=pathDirectionManager.pathComplationCondition(scanStation.arenaStoneHole,targetHole);
             if(isScanStationOnTarget){
-                completedPaths.push(currentScan);
+                completedPaths.push([...currentScan]);
+                currentScan.pop();
+                continue;
 
             }else{
+                prefferedDirections=pathDirectionManager.getPrefferedSearchDirections(scanStation.arenaStoneHole, targetHole);
             let scanNextStation=scanStation.scanNextStation(prefferedDirections);
             let isStationAvailable=scanNextStation.isStationStoneHoleAvailable();
             let notInCurrentScan=!scanNextStation.isInCurrentScan(currentScan);
             if(isStationAvailable&&notInCurrentScan){currentScan.push(scanNextStation)}
         }
+        let listForPrintId=[...completedPaths];
+        for (let index = 0; index < listForPrintId.length; index++) {
+            const element = listForPrintId[index];
+            let petIds="";
+            for (let index = 0; index < element.length; index++) {
+                const elementx = element[index];
+                petIds+=", [" +elementx.getId() +"]";
+            }
+            let path="path "+(index+1)+petIds ;
+            console.log(path);
+            
+            
+        }
 
-            scanCond=currentScan.length>0;
-            if(completedPaths.length>0){
-                scanCond=false;
-            }
-            if(turntimes>15000){
-                scanCond=false;
-            }
+            // if(completedPaths.length>0){
+            //     scanCond=false;
+            // }
+            // if(turntimes>15000){
+            //     scanCond=false;
+            // }
             console.log(turntimes)
-
         }
         console.log([...completedPaths])
 
@@ -172,10 +285,10 @@ class pathStation {
     scanNextStation(prefferedDirections){
         let nextHole=this.scanNextArenaStoneHole();
         let station=this;
-        let comeFromDirection=this.popLastDirection();
+        let comeFromDirection=station.popLastDirection();
         if(comeFromDirection){ comeFromDirection=comeFromDirection.getReverse();}
         if (nextHole) {
-            station=pathStationManager.newpathStation(nextHole,prefferedDirections,this,comeFromDirection);
+            station=newpathStation(nextHole,prefferedDirections,this,comeFromDirection);
         }
         return station;
     }

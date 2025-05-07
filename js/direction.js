@@ -96,34 +96,38 @@ class basicDirection{
 
     static getPreferredDirectionsByHole(area1,area2){
         let res = [];
-        let vertical = area2.yPos - area1.yPos;
-        let horizontal = area2.xPos - area1.xPos;
-        console.log(vertical);
-        console.log(horizontal);
+        let verticalDis = area2.yPos - area1.yPos;
+        let horizontalDis = area2.xPos - area1.xPos;
+
 
         let primaryDirection;
         let secondaryDirection;
-            if (Math.abs(vertical) > Math.abs(horizontal)) {
-                primaryDirection = directionManager.getVerticalDirectionByDistance(vertical);
-                secondaryDirection = directionManager.getHorizontalDirectionByDistance(horizontal);
-            } else {
-                primaryDirection = directionManager.getHorizontalDirectionByDistance(horizontal);
-                secondaryDirection = directionManager.getVerticalDirectionByDistance(vertical);
+        let horiDir = directionManager.getHorizontalDirectionByDistance(horizontalDis);
+        let vertiDir = directionManager.getVerticalDirectionByDistance(verticalDis);
+        
+            if (Math.abs(verticalDis) < Math.abs(horizontalDis)) {
+                primaryDirection =horiDir ;
+                secondaryDirection = vertiDir;
             }
-        res.push(primaryDirection);
-        res.push(secondaryDirection);
-        res.push(res[1].getReverse());
-        res.push(res[0].getReverse());
+            else{
+                primaryDirection = vertiDir;
+                secondaryDirection = horiDir;
+
+            }
+            res.push(primaryDirection);
+            res.push(secondaryDirection);
+            res.push(secondaryDirection.getReverse());
+            res.push(primaryDirection.getReverse());
         return res;
     }
     static getVerticalDirectionByDistance(distance){
-        let res=directionManager.dUp;
-        if(distance>0){res= directionManager.dBottom;}
+        let res=directionManager.dBottom;
+        if(distance<0){res= directionManager.dUp;}
         return res;
     }
     static getHorizontalDirectionByDistance(distance){
-        let res=directionManager.dLeft;
-        if(distance>0){res= directionManager.dRight;}
+        let res=directionManager.dRight;
+        if(distance<0){res= directionManager.dLeft;}
         return res;
     }
 

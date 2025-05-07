@@ -38,21 +38,21 @@ class walkMove extends movementType{
    constructor() {
       super();
       this.typeName="walkMove";
-      this.price=2;
+      this.price=0;
       //temporary
       //this.portalmove=new portalMove();
-      this.pathFindingManager=new defaultPathFindingMethod();
+      this.pathFindingMethod=new shortestPathFindingMethod();
    }
    move(stoneBall,toStoneHole){
 
 
       //this.portalmove.move(stoneBall,toStoneHole);
       //pathFinding will use stone ball as start and toStoneHole as target
-      let pFM=this.pathFindingManager;
+      let pFM=this.pathFindingMethod;
 
-      let paths=pFM.search(stoneBall,toStoneHole);
+      let paths=pFM.getPaths(stoneBall,toStoneHole);
       let getShortestPath=pFM.getShortestPath(paths);
-      let milisecond=50;
+      let milisecond=85;
       console.log(paths)
       let ret=this.walk(getShortestPath,5,milisecond);
       return ret;
@@ -75,7 +75,7 @@ class portalMove extends movementType{
    constructor() {
       super();
       this.typeName="portalMove";
-      this.price=150;
+      this.price=100;
    }
    move(stoneBall,toStoneHole){
        //TransportationMovement
