@@ -70,7 +70,7 @@ class shortestPathFindingMethod extends pathFindingMethodBase {
         return this.search(stoneBall,toStoneHole);
     }
     getShortestPath(paths){
-         let sorted=paths.sort((a,b)=>{return a.length;})[0];
+         let sorted=paths.sort()[0];
        return sorted;
    }
    search(stoneHole, targetHole) {
