@@ -66,7 +66,6 @@ function setWalkInterval(path,milisecondPerStation){
             Maingame.updateArena();
             let pointcollected=Maingame.pointCollector.collectPoints();
             Maingame.arena.updateArena();
-            pushTurnBackMove();
             //if there empty StoneHoles continue 
 
             if(Maingame.arena.getEmptyHoleCount()<=Maingame.arena.turnAddNewStones){
