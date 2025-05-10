@@ -20,13 +20,90 @@ class pointCollector{
         });
         return pointCollected;
     }
+    collectPoints2(){
+        let game=this.game;
+        let pointCollected=0;
+        let colectedStones=[];
+        this.SelectPatterns.forEach(pattern => {
+            let data=pattern.collectStoneGroups(this.game.arena);
+            console.log(data)
+            data.forEach(element=>{colectedStones.push(element);
+                console.log(element);
+            });
+            
+        });
+        console.log([...colectedStones])
 
+        while(colectedStones.length>0){
+            let firstPointGroup=colectedStones[0];
+            firstPointGroup.forEach(element => {
+                element.makeEmpty();
+                pointCollected+=game.gameStonePointPerBall;
+            });
+
+            colectedStones.shift();
+        }
+        game.score+=pointCollected;
+        return pointCollected;
+    }
 
 }
 class selectPattern{
     constructor(arena){
         this.arena=arena;
         this.selectedHoles=[];
+    }
+    Select2(){
+        let arena=this.arena;
+        let pointStoneGroups=[];
+        let pointStonesCountForCollecting=arena.game.stoneCollectCountVal;
+        let stonedHoles=arena.getStonedholes();
+        let isInStonedHoles=(stoneHole)=>{
+            let ret;
+            for (let index = 0; index < stonedHoles.length; index++) {
+                const element = stonedHoles[index];
+                if(element.getId()==stoneHole.getId()){
+                    ret=element;
+                    break;
+                }
+            }
+            return ret;
+        }
+        let lastElement=()=>{
+            return stonedHoles[stonedHoles.length-1];
+        }
+            while (lastElement()!=null) {
+                let firstPointStone=lastElement();
+                let pointStonesSearch=[];
+                pointStonesSearch.push(firstPointStone);
+                let lastPointStone=()=>{return pointStonesSearch[pointStonesSearch.length-1];}
+                let nextPointStone=()=>{return lastPointStone().getStoneholeAtDirection(this.direction);}
+                let condition=()=>{
+                    let ret=false;
+                    let lastStone=lastPointStone();
+                    let nextStone=nextPointStone();
+                    if(nextStone==null){
+                        return ret;
+                    }
+                    if(lastStone.getBallStoneType()==nextStone.getBallStoneType()){
+                        ret= true;
+                    }
+
+                    return ret;
+                }
+                let contCount=0;
+                    while (condition()) {
+                        pointStonesSearch.push(nextPointStone());
+                    }
+                if(pointStonesSearch.length>=pointStonesCountForCollecting){
+                    pointStoneGroups.push(pointStonesSearch);}
+            stonedHoles.pop();
+        }
+    return pointStoneGroups;
+    }
+    collectStoneGroups(){
+        let pointStoneGroups= this.Select2();;
+        return pointStoneGroups;
     }
     Select(){
         console.log("Select");

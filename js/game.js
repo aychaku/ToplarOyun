@@ -22,6 +22,7 @@ class game{
             this.stoneCollectCountVal= this.stoneCollectCount.value;
             this.randomStonesPreview=document.getElementById(gameVarName+"randomStonesPreview");
             this.nextRandomStones=[];
+            this.gameStonePointPerBall=10;
             this.setGameArena();
             this.pointCollector= new pointCollector(this);
             this.movementManager= new movementManager(this);

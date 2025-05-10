@@ -28,11 +28,14 @@ class arenaStoneHole{
         return targetStoneHole;
     }
     getStoneholeAtDirectionIfEmpty(DirectionList){
-        let stoneHole=getStoneholeAtDirection(DirectionList);
+        let stoneHole=this.getStoneholeAtDirection(DirectionList);
+        if(stoneHole==null){
+            return null;
+        }
         if(stoneHole.isStoned()){
             stoneHole=null;
         }
-        return targetStoneHole;
+        return stoneHole;
     }
     findStoneHoleByPos(xPos,yPos){
         var arena=this.game.arena;
@@ -46,6 +49,9 @@ class arenaStoneHole{
             return result;
     }
     getBallStoneType(){
+        if(!this.isStoned()){
+            return null;
+        }
         return this.ballStoneHole.getType();
     }
     isStoned(){

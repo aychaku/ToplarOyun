@@ -59,12 +59,12 @@ function setWalkInterval(path,milisecondPerStation){
                 }
 
         }else{
-            let points=game.pointCollector.collectPoints();
+            let points=game.pointCollector.collectPoints2();
             if(points==0){
                 game.turnAddNewStones();
             }
             Maingame.updateArena();
-            let pointcollected=Maingame.pointCollector.collectPoints();
+
             Maingame.arena.updateArena();
             //if there empty StoneHoles continue 
 
@@ -74,9 +74,9 @@ function setWalkInterval(path,milisecondPerStation){
                 return;
             }else{
                 console.log(Maingame.arena.getEmptyHoleCount()+`Game Continue due of present StoneBallSpace`);
-                if(pointcollected==0){
+                if(points==0){
                     // Maingame.arena.game.score+=-2;
-                //Maingame.arena.game.turnAddNewStones();
+                    //Maingame.arena.game.turnAddNewStones();
             }else{
                 setUnfilledOldArenaStoneHoleMap(Maingame.arena);}
 

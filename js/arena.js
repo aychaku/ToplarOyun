@@ -68,6 +68,9 @@ class arena{
         });
         return result;
     }
+    getStonedholes(){
+        return this.getFullStoneholes();
+    }
     selectRandomEmptyHole(){
         const emptyhole=this.getEmptyStoneholes();
         const randomindex= Math.floor(Math.random()*(emptyhole.length));
@@ -253,6 +256,15 @@ class arena{
             }
         });
         result.cleanHole();
+    }
+    cleanAllHole(){
+
+        this.stoneHoleMap.forEach(element => {
+            if (element.getId()==id) {
+                element.cleanHole();
+            }
+        });
+        
     }
 
 }

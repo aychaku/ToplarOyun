@@ -9,6 +9,7 @@ function turnBackMove(){
         Maingame.setStoneCollectCountVal(session.stoneCollectCountVal);
         Maingame.setGameArena();
         Maingame.arena.stoneHoleMap=Maingame.arena.createStoneHoleArenaMap();
+        Maingame.pointCollector=new pointCollector(Maingame);
         session.arenaMapHole.forEach(element => {
             Maingame.addBallAtPosWithColorShapeForLoad(element[0],element[1],element[2],element[3])
         
@@ -16,6 +17,7 @@ function turnBackMove(){
     }else{
         alert("Geri alıncacak hareket yok.");
     }
+    Maingame.updateArena()
 }
 function pushTurnBackMove(){
     let currentSession=getCurrentGame();
@@ -69,11 +71,12 @@ function loadGame(gameSessionIndex){
     Maingame.setStoneCollectCountVal(session.stoneCollectCountVal);
     Maingame.setGameArena();
     Maingame.arena.stoneHoleMap=Maingame.arena.createStoneHoleArenaMap();
+    Maingame.pointCollector=new pointCollector(Maingame);
     session.arenaMapHole.forEach(element => {
         Maingame.addBallAtPosWithColorShapeForLoad(element[0],element[1],element[2],element[3])
     
     });
-
+    Maingame.updateArena()
 }
 function updateSaveMenuList(){
     let loadElementrow=document.getElementById("savedListMenu");
